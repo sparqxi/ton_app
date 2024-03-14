@@ -5,9 +5,11 @@ type Props = {}
 
 const Footer = (props: Props) => {
     return (
-        <AppBar position='fixed' color='default' sx={{ top: 'auto', bottom: 0 }}><Toolbar>
-            footer
-        </Toolbar></AppBar>
+        <AppBar position='fixed' color='default' sx={{ top: 'auto', bottom: 0 }}>
+            <Toolbar
+                sx={{ minHeight: "46px !important" }}>
+                MegaTON-2024
+            </Toolbar></AppBar>
     )
 }
 

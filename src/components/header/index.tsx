@@ -1,11 +1,13 @@
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
 import React from 'react'
+import HeaderSwith from './hader-swith'
 
 type Props = {}
 
 const Header = (props: Props) => {
     return (
-        <AppBar color='default' position='static' sx={{ borderRadius: 6, boxShadow: 'none', mt: 4 }} >
+        <>
+        <AppBar color='default' position='static' sx={{ borderRadius: 6, boxShadow: 'none', mt: 3 }} >
             <Toolbar sx={{ minHeight: '46px !important' }}>
                 <img src='assets/image/logo.svg' height="15px" />
                 <Box flexGrow={1} />
@@ -19,6 +21,8 @@ const Header = (props: Props) => {
                 </Box>
             </Toolbar>
         </AppBar>
+        <HeaderSwith/>
+        </>
     )
 }
 
