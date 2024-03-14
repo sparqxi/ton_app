@@ -1,10 +1,17 @@
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import HeaderSwith from './hader-swith'
+import { ThemeContext, ThemeContextType } from '../../context/themeContext'
 
 type Props = {}
 
 const Header = (props: Props) => {
+    const context = useContext<ThemeContextType|undefined>(ThemeContext);
+    if (!context) {
+        throw new Error('useThemeMode must be used within a ThemeProvider');
+      }
+    
+      const { toggleThemeMode } = context;
     return (
         <>
         <AppBar color='default' position='static' sx={{ borderRadius: 6, boxShadow: 'none', mt: 3 }} >
@@ -12,7 +19,7 @@ const Header = (props: Props) => {
                 <img src='assets/image/logo.svg' height="15px" />
                 <Box flexGrow={1} />
                 <Box>
-                    <IconButton>
+                    <IconButton onClick={toggleThemeMode}>
                         <img src='assets/icon/mode.svg' height="20px" />
                     </IconButton>
                     <IconButton>

@@ -1,21 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from '@emotion/react';
-import { theme } from './style/theme';
+import React, { createContext, useContext, useMemo, useState } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "@mui/material/styles";
+import { ThemeContext } from "./context/themeContext";
+import { theme } from "./style/theme";
+
+const AppWrapper = () => {
+  const [themeMode, setThemeMode] = useState("light");
+
+  const toggleThemeMode = () => {
+    setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
+
+  const customTheme = useMemo(() => {
+    const temp = {
+      ...theme,
+      palette: {
+        ...theme.palette,
+        mode: themeMode,
+      },
+    };
+    return temp;
+  }, [theme,themeMode]);
+
+  return (
+    <React.StrictMode>
+      <ThemeContext.Provider value={{ themeMode, toggleThemeMode }}>
+        <ThemeProvider theme={customTheme}>
+          <App />
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </React.StrictMode>
+  );
+};
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
-);
+
+root.render(<AppWrapper />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,17 +1,34 @@
 // import React from 'react';
 // import logo from './logo.svg';
-import './App.css';
-import Header from './components/header';
-import Footer from './components/footer';
-import { Container } from '@mui/material';
-
+import "./App.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import { Container, css, useTheme } from "@mui/material";
+import Page from "./page";
+import { Global } from "@emotion/react";
 function App() {
+  const theme = useTheme();
+  const generateGlobalStyles = (props: any) => css`
+    body {
+      background-color: ${props ||
+      "#f0f0f0"}; 
+    }
+  `;
   return (
-    <Container maxWidth="lg">
-      <Header />
-      <div>h</div>
-      <Footer />
-    </Container>
+    <>
+      <Global
+        styles={generateGlobalStyles(
+          theme.palette.mode === "dark"
+            ? theme.palette.grey[700]
+            : theme.palette.grey[100]
+        )}
+      />
+      <Container maxWidth="lg" >
+        <Header />
+        <Page />
+        <Footer />
+      </Container>
+    </>
   );
 }
 
