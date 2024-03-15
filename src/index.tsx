@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "./context/themeContext";
 import { theme } from "./style/theme";
+import { PageContext } from "./context/pageContext";
+import { PagesList } from "./components/header/hader-swith";
+import { PageContextProvider } from "./hooks/usePageContext";
 
 const AppWrapper = () => {
   const [themeMode, setThemeMode] = useState("light");
@@ -23,14 +26,16 @@ const AppWrapper = () => {
       },
     };
     return temp;
-  }, [theme,themeMode]);
+  }, [theme, themeMode]);
 
   return (
     <React.StrictMode>
       <ThemeContext.Provider value={{ themeMode, toggleThemeMode }}>
-        <ThemeProvider theme={customTheme}>
-          <App />
-        </ThemeProvider>
+        <PageContextProvider>
+          <ThemeProvider theme={customTheme}>
+            <App />
+          </ThemeProvider>
+        </PageContextProvider>
       </ThemeContext.Provider>
     </React.StrictMode>
   );
