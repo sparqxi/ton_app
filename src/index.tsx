@@ -5,34 +5,23 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "./context/themeContext";
-import { theme } from "./style/theme";
+import { customTheme } from "./style/theme";
 import { PageContext } from "./context/pageContext";
 import { PagesList } from "./components/header/hader-swith";
 import { PageContextProvider } from "./hooks/usePageContext";
+import { PaletteMode } from "@mui/material";
 
 const AppWrapper = () => {
-  const [themeMode, setThemeMode] = useState("light");
+  const [themeMode, setThemeMode] = useState <PaletteMode>("light");
 
   const toggleThemeMode = () => {
     setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
-
-  const customTheme = useMemo(() => {
-    const temp = {
-      ...theme,
-      palette: {
-        ...theme.palette,
-        mode: themeMode,
-      },
-    };
-    return temp;
-  }, [theme, themeMode]);
-
   return (
     <React.StrictMode>
       <ThemeContext.Provider value={{ themeMode, toggleThemeMode }}>
         <PageContextProvider>
-          <ThemeProvider theme={customTheme}>
+          <ThemeProvider theme={customTheme(themeMode)}>
             <App />
           </ThemeProvider>
         </PageContextProvider>

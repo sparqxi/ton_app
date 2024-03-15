@@ -1,6 +1,8 @@
-import { createTheme } from "@mui/material/styles";
+import { PaletteMode } from "@mui/material";
+import { Theme, ThemeOptions, createTheme } from "@mui/material/styles";
 
-export const theme = createTheme({
+
+ const theme:ThemeOptions = {
   breakpoints: {
     values: {
       xs: 0,
@@ -12,11 +14,12 @@ export const theme = createTheme({
   },
   
   palette: {
-    // background: {
-    //   paper: '#FFFFFF',
-    //   default: '#F9FAFE',
-    // },
+    background: {
+      paper: '#fff',
+      default: '#F9FAFE',
+    },
     grey: {
+      50:"#F9FAFE",
       100: "#EDF0F7",
       200: "#DFE4EC",
       300: "#CCD2DC",
@@ -30,7 +33,6 @@ export const theme = createTheme({
       secondary: "#FFAF59",
       disabled: "#6A6F7A",
     },
-    mode: "light",
     primary: {
       main: "#5754E1",
     },
@@ -85,13 +87,25 @@ export const theme = createTheme({
         },
       },
     },
-    MuiAppBar:{
-      styleOverrides:{
-        root:{
-          backgroundColor:"#F9FAFE"
-        }
-      }
-    }
+    
   },
   
-});
+};
+
+export const customTheme = (mode:PaletteMode) => (
+  mode === "light"?  createTheme({...theme}) : 
+    createTheme({
+      ...theme,
+      palette:{
+        ...theme.palette,
+        mode:'dark',
+        background: {
+          // paper: 'red',
+          default: '#F9FAFE',
+        },
+      }
+
+    })
+  
+
+)

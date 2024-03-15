@@ -5,13 +5,13 @@ type Props = {}
 
 const Footer = (props: Props) => {
     return (
-        <AppBar position='fixed' color='default' sx={{ top: 'auto', bottom: 0 }}>
+        <AppBar position='fixed' color='inherit' sx={{ top: 'auto', bottom: 0,boxShadow:'none' }}>
             <Toolbar
                 sx={{ minHeight: "46px !important" }}>
                 <Container maxWidth="lg" sx={{ display: 'flex' }}>
                     <Grid container>
 
-                        <Typography>MegaTON-2024</Typography>
+                        <Typography variant='caption'>MegaTON-2024</Typography>
                     </Grid>
 
                     <Grid container columnGap={2} justifyContent="flex-end">

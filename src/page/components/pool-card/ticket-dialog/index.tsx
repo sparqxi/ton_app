@@ -4,8 +4,10 @@ import {
   Dialog,
   Divider,
   Grid,
+  IconButton,
   Typography,
   styled,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 import TicketCountInput from "./TicketCountInput";
@@ -16,22 +18,32 @@ type Props = {
 };
 
 const TicketDialog = ({ open, handleClose }: Props) => {
+  const theme = useTheme();
   // TODO: background of dialog
   return (
     <Dialog
       open={open}
       PaperProps={{
-        sx: { padding: 6, borderRadius: 8, backgroundColor: "#F9FAFE" },
+        sx: {
+          padding: 6,
+          borderRadius: 8,
+          backgroundColor:
+            theme.palette.mode === "light"
+              ? theme.palette.grey[50]
+              : theme.palette.grey[800],
+        },
       }}
       onClose={handleClose}
       fullWidth
       maxWidth="xs"
     >
+      <IconButton sx={{ position: "absolute", top: "20px", right: "30px" }} onClick={handleClose}>
       <img
         src="assets/icon/close 1.svg"
         alt="close"
-        style={{ position: "absolute", top: "20px", right: "30px" }}
-      />
+        />
+   
+      </IconButton>
       <TicketCountInput />
       <Grid container alignItems="center" mt={2}>
         <Typography color={"text.disabled"}>Ticket price</Typography>

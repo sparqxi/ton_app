@@ -14,7 +14,7 @@ const Header = (props: Props) => {
       const { toggleThemeMode } = context;
     return (
         <>
-        <AppBar color='default' position='static' sx={{ borderRadius: 6, boxShadow: 'none', mt: 3 }} >
+        <AppBar color="inherit" position='static' sx={{ borderRadius: 6, boxShadow: 'none', mt: 3 }} >
             <Toolbar sx={{ minHeight: '46px !important' }}>
                 <img src='assets/image/logo.svg' height="15px" />
                 <Box flexGrow={1} />
