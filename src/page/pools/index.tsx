@@ -8,10 +8,10 @@ const PoolsPage = (props: Props) => {
   return (
     <Grid container spacing={6}>
     <Grid item md={6} sm={12} xs={12} >
-      <PoolCard />
+      <PoolCard type='time'/>
     </Grid>
     <Grid item md={6} sm={12} xs={12}>
-      <PoolCard />
+      <PoolCard type='prize'/>
     </Grid>
   </Grid>
   )

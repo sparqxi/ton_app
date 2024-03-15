@@ -30,6 +30,7 @@ import { Theme, ThemeOptions, createTheme } from "@mui/material/styles";
       800: "#303239",
     },
     text: {
+     
       secondary: "#FFAF59",
       disabled: "#6A6F7A",
     },

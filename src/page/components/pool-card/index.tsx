@@ -3,7 +3,10 @@ import React from 'react'
 import PoolTicketCard from './pool-ticket-card'
 import WinnerHistory from './winner-history'
 
-type Props = {}
+export type IType ="time"|"prize";
+type Props = {
+  type:IType
+}
 
 const PoolPaper = styled(Paper)(({theme}) => ({
     borderRadius:20,
@@ -12,11 +15,11 @@ const PoolPaper = styled(Paper)(({theme}) => ({
     // padding:8
 }))
 
-const PoolCard = (props: Props) => {
+const PoolCard = ({type}: Props) => {
     
   return (
     <PoolPaper>
-        <PoolTicketCard/>
+        <PoolTicketCard type={type}/>
         <WinnerHistory/>
     </PoolPaper>
   )
