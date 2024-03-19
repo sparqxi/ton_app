@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Typography, styled, useTheme } from "@mui/material";
 import React from "react";
 import ClaimInfo from "./claim-info";
+import { TonConnectButton } from "@tonconnect/ui-react";
 
 type Props = {};
 
@@ -34,10 +35,11 @@ const ClaimPage = (props: Props) => {
           look like readable English.
         </Typography>
         {
-            true ?<ClaimInfo/>:
-        <Button variant="contained" >
-          Connect wallet
-        </Button>
+            false ?<ClaimInfo/>:
+            <TonConnectButton />
+        // <Button variant="contained" >
+        //   Connect wallet
+        // </Button>
         }
       </Grid>
     </Root>

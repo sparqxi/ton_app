@@ -6,14 +6,23 @@ import Footer from "./components/footer";
 import { Container, css, useTheme } from "@mui/material";
 import Page from "./page";
 import { Global } from "@emotion/react";
+import { useTonAddress } from "@tonconnect/ui-react";
+
 function App() {
+  //@ts-ignore
   const theme = useTheme();
+  const userFriendlyAddress = useTonAddress();
+    const rawAddress = useTonAddress(false);
+    console.log('address=',userFriendlyAddress);
+    console.log('rawaddress=',rawAddress);
   const generateGlobalStyles = (props: any) => css`
     body {
       background-color: ${props ||
       "#f0f0f0"}; 
     }
   `;
+
+
   return (
     <>
       <Global

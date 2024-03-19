@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import TicketDialog from "../ticket-dialog";
 import { IType } from "..";
+import TonWeb from "tonweb";
 
 type Props = {
   type: IType;
@@ -74,9 +75,20 @@ const ProgressLabel = styled(Typography, {
   fontWeight: "bold",
   color: theme.palette.mode === "light" ? color : "white",
 }));
+// setWasmOptions({
+//   binaryPath: require.resolve('@tonclient/lib-web/tonclient.wasm'),
+// });
 
 const PoolTicketCard = ({ type }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
+  const contractAddress = "EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV";
+  // if(window.Buffer) {
+
+  //   const tonweb = new TonWeb();
+  // }
+  // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC', {apiKey: process.env.REACT_APP_TON_API_KEY}));
+  // console.log("tonweb ===" , tonweb);
+  
   return (
     <>
       <PoolTicketPaper>
@@ -146,3 +158,5 @@ const PoolTicketCard = ({ type }: Props) => {
 };
 
 export default PoolTicketCard;
+
+
