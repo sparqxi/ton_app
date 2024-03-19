@@ -1,6 +1,6 @@
 {
-  "url": "http://localhost:3000",                        
+  "url": "https://ton-app-theta.vercel.app",                        
   "name": "ton-app",                     
-  "iconUrl": "http://localhost:3000/assets/image/logo.svg"             
+  "iconUrl": "https://ton-app-theta.vercel.app/assets/image/logo.svg"             
   
 }
