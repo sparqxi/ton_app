@@ -2,9 +2,12 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import WinnerItem from "./winner-list";
 
-type Props = {};
+type Props = {
+  loading:boolean,
+  address:string
+};
 
-const WinnerHistory = (props: Props) => {
+const WinnerHistory = ({loading,address}: Props) => {
   return (
     <Box p={3}>
       <Grid container alignItems="center">
@@ -34,7 +37,7 @@ const WinnerHistory = (props: Props) => {
         }}
       >
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((_item, index) => (
-          <WinnerItem key={index} />
+          <WinnerItem key={index} loading={loading} address={address}/>
         ))}
       </Box>
     </Box>

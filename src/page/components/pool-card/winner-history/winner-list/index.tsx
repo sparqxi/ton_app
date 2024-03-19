@@ -1,7 +1,11 @@
-import { Box, Grid, Typography, styled } from "@mui/material";
+import { Box, Grid, Skeleton, Typography, styled } from "@mui/material";
 import React from "react";
+import { shortenTONAddress } from "../../../../../utils/utils";
 
-type Props = {};
+type Props = {
+  loading:boolean,
+  address:string
+};
 
 const WinnerItemBox = styled(Box)(({ theme }) => ({
   borderRadius: 8,
@@ -10,7 +14,7 @@ const WinnerItemBox = styled(Box)(({ theme }) => ({
   marginTop: 2,
 }));
 
-const WinnerItem = (props: Props) => {
+const WinnerItem = ({loading,address}: Props) => {
   return (
     <WinnerItemBox>
       <Grid container justifyContent="space-between" alignItems="center">
@@ -18,19 +22,24 @@ const WinnerItem = (props: Props) => {
 
         <Grid  container alignItems="center" spacing={1}>
           <Grid item>
-            <Typography variant="caption">12123...34343</Typography>
+            <Typography variant="caption">{
+              loading ? <Skeleton width={200}/> :shortenTONAddress(address)
+            } </Typography>
           </Grid>
           <Grid item>
-            <img
-              src="assets/icon/external-link.svg"
-              alt="link"
-              style={{ verticalAlign: "middle",cursor:'pointer' }}
-            />
+            {
+              loading ? <Skeleton variant="circular" width={20} height={20}/> :
+              <img
+                src="assets/icon/external-link.svg"
+                alt="link"
+                style={{ verticalAlign: "middle",cursor:'pointer' }}
+              />
+            }
           </Grid>
         </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="body2">518TON</Typography>
+          <Typography variant="body2">{loading ? <Skeleton width={100}/> : "518TON"} </Typography>
         </Grid>
       </Grid>
     </WinnerItemBox>
