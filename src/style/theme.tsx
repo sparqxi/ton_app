@@ -88,6 +88,13 @@ import { Theme, ThemeOptions, createTheme } from "@mui/material/styles";
         },
       },
     },
+    MuiSelect:{
+      styleOverrides:{
+        root:{
+          borderRadius:18
+        }
+      }
+    }
     
   },
   

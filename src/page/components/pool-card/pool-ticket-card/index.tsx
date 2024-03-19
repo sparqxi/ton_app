@@ -6,15 +6,24 @@ import {
   Grid,
   LinearProgress,
   Paper,
+  Skeleton,
   Typography,
   linearProgressClasses,
   styled,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TicketDialog from "../ticket-dialog";
 import { IType } from "..";
 import TonWeb from "tonweb";
-
+import lottery_abi from "../../../../smart-contract/verifier_Lottery.json";
+import { Address } from "ton";
+import { client, contractAddresses } from "../../../../smart-contract/constant";
+import {
+  getBalance,
+  getTotalPrice,
+  getWinners,
+} from "../../../../utils/contract-function";
+// import lottery_abi from " ../"
 type Props = {
   type: IType;
 };
@@ -24,7 +33,7 @@ type ProgressLabelProps = {
   // Add other props you want to pass here
 };
 
-const PoolTicketPaper = styled(Paper)(({ theme }) => ({
+const PoolTicketPaper = styled(Paper)(() => ({
   borderRadius: 20,
   padding: "20px 20px",
   backgroundImage: "url(assets/image/toncoin.png)",
@@ -81,14 +90,26 @@ const ProgressLabel = styled(Typography, {
 
 const PoolTicketCard = ({ type }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
-  const contractAddress = "EQBY6u-mHDpQX6-r1voFOEvOoG_jJoaDcfhEvwBHcORVMJiV";
-  // if(window.Buffer) {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [address, setAddress] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    const fetchWinners = async () => {
+      try {
+        // setLoading(true);
+        const address = await getWinners();
+        setAddress(address ?? "");
+        const total_price = await getTotalPrice();
+        setTotalPrice(total_price ?? 0);
+        setLoading(false);
+      } catch (error) {
+        console.log("err==", error);
+      }
+    };
 
-  //   const tonweb = new TonWeb();
-  // }
-  // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC', {apiKey: process.env.REACT_APP_TON_API_KEY}));
-  // console.log("tonweb ===" , tonweb);
-  
+    fetchWinners();
+  }, []);
+
   return (
     <>
       <PoolTicketPaper>
@@ -132,9 +153,15 @@ const PoolTicketCard = ({ type }: Props) => {
           <Typography variant="subtitle1" color={"text.disabled"}>
             Total price:
           </Typography>
-          <Typography variant="h1" sx={{color:type === "time" ? "#FFAF59" : "#5754E1"}} mx={3}>
-            509
+
+          <Typography
+            variant="h1"
+            sx={{ color: type === "time" ? "#FFAF59" : "#5754E1" }}
+            mx={3}
+          >
+            {loading ? <Skeleton  width={100}/> : totalPrice}
           </Typography>
+
           <Typography variant="h6" color={"text.disabled"}>
             TON
           </Typography>
@@ -158,5 +185,3 @@ const PoolTicketCard = ({ type }: Props) => {
 };
 
 export default PoolTicketCard;
-
-

@@ -21,7 +21,7 @@ const AppWrapper = () => {
   };
 
   return (
-    <React.StrictMode>
+    // <React.StrictMode>
       <ThemeContext.Provider value={{ themeMode, toggleThemeMode }}>
         <PageContextProvider>
           <ThemeProvider theme={customTheme(themeMode)}>
@@ -31,7 +31,7 @@ const AppWrapper = () => {
           </ThemeProvider>
         </PageContextProvider>
       </ThemeContext.Provider>
-    </React.StrictMode>
+    // </React.StrictMode>
   );
 };
 const root = ReactDOM.createRoot(
