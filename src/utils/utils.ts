@@ -1,6 +1,5 @@
-export function shortenTONAddress(address: string): string {
-    const prefixLength: number = 6; 
-    const suffixLength: number = 8; 
+export function shortenTONAddress(address: string,prefixLength:number,suffixLength:number): string {
+ 
     
     // Extract the prefix and suffix
     const prefix: string = address.slice(0, prefixLength);

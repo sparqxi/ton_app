@@ -23,7 +23,7 @@ const WinnerItem = ({loading,address}: Props) => {
         <Grid  container alignItems="center" spacing={1}>
           <Grid item>
             <Typography variant="caption">{
-              loading ? <Skeleton width={200}/> :shortenTONAddress(address)
+              loading ? <Skeleton width={200}/> :shortenTONAddress(address,6,8)
             } </Typography>
           </Grid>
           <Grid item>

@@ -11,10 +11,8 @@ import { useTonAddress } from "@tonconnect/ui-react";
 function App() {
   //@ts-ignore
   const theme = useTheme();
-  const userFriendlyAddress = useTonAddress();
-    const rawAddress = useTonAddress(false);
-    console.log('address=',userFriendlyAddress);
-    console.log('rawaddress=',rawAddress);
+ 
+   
   const generateGlobalStyles = (props: any) => css`
     body {
       background-color: ${props ||

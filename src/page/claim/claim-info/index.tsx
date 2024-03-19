@@ -1,8 +1,11 @@
 import { Box, Button, Grid, Paper, Typography, styled } from "@mui/material";
 import React from "react";
 import PoolSelect from "./pool-select";
+import { shortenTONAddress } from "../../../utils/utils";
 
-type Props = {};
+type Props = {
+  wallet_address:string
+};
 const Root = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.grey,
   borderRadius: 24,
@@ -10,7 +13,7 @@ const Root = styled(Paper)(({ theme }) => ({
   padding: "40px 60px",
 }));
 
-const ClaimInfo = (props: Props) => {
+const ClaimInfo = ({wallet_address}: Props) => {
   return (
     <Grid container justifyContent="center">
         <Grid item md={6}>
@@ -21,7 +24,7 @@ const ClaimInfo = (props: Props) => {
           <Typography variant="caption" color="text.disabled">Connect wallet:</Typography>
         </Grid>
         <Grid item>
-          <Typography>UQAGpjE_yWaO7KP62vqqDH11fKGS5q3VJhfA</Typography>
+          <Typography>{shortenTONAddress(wallet_address,10,10)}</Typography>
         </Grid>
       </Grid>
       <Grid container justifyContent="space-between" alignItems="center" mb={3}>

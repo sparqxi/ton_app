@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography, styled, useTheme } from "@mui/material";
 import React from "react";
 import ClaimInfo from "./claim-info";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 
 type Props = {};
 
@@ -11,6 +11,7 @@ const Root = styled(Box)(({ theme }) => ({
   height: "60vh",
 }));
 const ClaimPage = (props: Props) => {
+  const userFriendlyAddress = useTonAddress();
     const theme = useTheme()
   return (
     <Root>
@@ -35,7 +36,7 @@ const ClaimPage = (props: Props) => {
           look like readable English.
         </Typography>
         {
-            false ?<ClaimInfo/>:
+            userFriendlyAddress.length > 0 ?<ClaimInfo wallet_address={userFriendlyAddress}/>:
             <TonConnectButton />
         // <Button variant="contained" >
         //   Connect wallet
