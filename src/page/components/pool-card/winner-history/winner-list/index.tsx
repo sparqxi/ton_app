@@ -30,6 +30,7 @@ const WinnerItem = ({loading,address}: Props) => {
             {
               loading ? <Skeleton variant="circular" width={20} height={20}/> :
               <img
+              onClick={() => window.open(`https://testnet.tonscan.org/address/${address}`)}
                 src="assets/icon/external-link.svg"
                 alt="link"
                 style={{ verticalAlign: "middle",cursor:'pointer' }}
