@@ -19,6 +19,7 @@ const AppWrapper = () => {
   const toggleThemeMode = () => {
     setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
+  console.log('env==',process.env.REACT_APP_URL);
 
   return (
     // <React.StrictMode>
