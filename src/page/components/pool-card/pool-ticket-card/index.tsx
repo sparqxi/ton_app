@@ -4,6 +4,7 @@ import {
   Chip,
   Divider,
   Grid,
+  IconButton,
   LinearProgress,
   Paper,
   Skeleton,
@@ -14,20 +15,16 @@ import {
 import React, { useEffect, useState } from "react";
 import TicketDialog from "../ticket-dialog";
 import { IType } from "..";
-import TonWeb from "tonweb";
-import lottery_abi from "../../../../smart-contract/verifier_Lottery.json";
-import { Address } from "ton";
-import { client, contractAddresses } from "../../../../smart-contract/constant";
-import {
-  getBalance,
-  getTotalPrice,
-  getWinners,
-} from "../../../../utils/contract-function";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 // import lottery_abi from " ../"
 type Props = {
   type: IType;
   loading?:boolean;
-  totalPrice?:number
+  totalPrice?:number;
+  handleExpand?:() => void;
+  expand?:boolean
+  isPhone?:boolean
 };
 
 type ProgressLabelProps = {
@@ -42,6 +39,7 @@ const PoolTicketPaper = styled(Paper)(() => ({
   backgroundRepeat: "no-repeat",
   height: "310px",
   boxShadow: "none",
+  position:'relative'
 }));
 
 const BorderLinearProgress = styled(LinearProgress, {
@@ -90,7 +88,7 @@ const ProgressLabel = styled(Typography, {
 //   binaryPath: require.resolve('@tonclient/lib-web/tonclient.wasm'),
 // });
 
-const PoolTicketCard = ({ type,totalPrice,loading }: Props) => {
+const PoolTicketCard = ({ type,totalPrice,loading,handleExpand,expand,isPhone }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   
 
@@ -159,6 +157,10 @@ const PoolTicketCard = ({ type,totalPrice,loading }: Props) => {
             Get tickets
           </Button>
         </Grid>
+        {
+         isPhone && handleExpand &&
+          <IconButton sx={{position:'absolute',right:4,bottom:4}} onClick={handleExpand}>{expand ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}</IconButton>
+        }
       </PoolTicketPaper>
       <TicketDialog
         open={open}

@@ -4,7 +4,8 @@ import WinnerItem from "./winner-list";
 
 type Props = {
   loading:boolean,
-  address:string
+  address:string,
+  
 };
 
 const WinnerHistory = ({loading,address}: Props) => {

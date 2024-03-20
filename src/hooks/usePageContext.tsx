@@ -4,7 +4,7 @@ import { PagesList } from '../components/header/hader-swith';
 
 
 export const PageContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [page,setPage] = useState<PagesList>('claim');
+  const [page,setPage] = useState<PagesList>('pools');
   const pageToggle = () => {
     setPage((prev) => prev === 'claim'?"pools":"claim" )
   }

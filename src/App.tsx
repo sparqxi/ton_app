@@ -30,7 +30,7 @@ function App() {
             : theme.palette.grey[100]
         )}
       />
-      <Container maxWidth="lg" >
+      <Container maxWidth="lg" sx={{pb:10}}>
         <Header />
         <Page />
         <Footer />
